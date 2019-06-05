@@ -1,0 +1,264 @@
+<html>
+	<head>
+		<title> Rain Prediction </title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<script src = "appscript.js"></script>
+		
+		<style>
+			form#rendered-form {
+				width:800px;
+				margin-left:250px;
+				color: yellow;
+				margin-top:0;
+			}
+			.result {
+				width:100%;
+				text-align:center;
+				background: black;
+				color:white;
+				padding:75px;
+				font: italic bold 30px Georgia, serif;
+			}
+			.form-inside {
+				background-image:url("https://media.giphy.com/media/PbOaO2fedzQLm/giphy.gif");
+				background-repeat: no-repeat;
+				background-size: cover;
+				padding:15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="jumbotron">
+		<h1>Rain Prediction</h1>      
+		<p>Rain Predictor using the real time data and machine learning models for predicting the most possible outcome of tomorrow's weather.</p>
+		</div>
+		<div class = "form-inside">
+		<form id="rendered-form" method ="post" action ="">
+			  <div class="fb-select form-group field-location">
+				 <label for="location" class="fb-select-label">Location<span class="fb-required">*</span></label>
+				 <select class="form-control" name="location" id="location" required="required" aria-required="true">
+					<option disabled="null" selected="null">Select location</option>
+					<option value="Albury" id="location-0">Albury</option>
+					<option value="Adelaide" id="location-1">Adelaide</option>
+					<option value="Albany" id="location-2">Albany</option>
+					<option value="AliceSprings" id="location-3">AliceSprings</option>
+					<option value="BadgerysCreek" id="location-4">BadgerysCreek</option>
+					<option value="Ballarat" id="location-5">Ballarat</option>
+					<option value="Bendigo" id="location-6">Bendigo</option>
+					<option value="Brisbane" id="location-7">Brisbane</option>
+					<option value="Cairns" id="location-8">Cairns</option>
+					<option value="Canberra" id="location-9">Canberra</option>
+					<option value="Cobar" id="location-10">Cobar</option>
+					<option value="CoffsHarbour" id="location-11">CoffsHarbour</option>
+					<option value="Dartmoor" id="location-12">Dartmoor</option>
+					<option value="Darwin" id="location-13">Darwin</option>
+					<option value="GoldCoast" id="location-14">GoldCoast</option>
+					<option value="Hobart" id="location-15">Hobart</option>
+					<option value="Katherine" id="location-16">Katherine</option>
+					<option value="Launceston" id="location-17">Launceston</option>
+					<option value="Melbourne" id="location-18">Melbourne</option>
+					<option value="MelbourneAirport" id="location-19">MelbourneAirport</option>
+					<option value="Mildura" id="location-20">Mildura</option>
+					<option value="Moree" id="location-21">Moree</option>
+					<option value="MountGambier" id="location-22">MountGambier</option>
+					<option value="MountGinini" id="location-23">MountGinini</option>
+					<option value="Newcastle" id="location-24">Newcastle</option>
+					<option value="Nhil" id="location-25">Nhil</option>
+					<option value="NorahHead" id="location-26">NorahHead</option>
+					<option value="NorforkIsland" id="location-27">NorfolkIsland</option>
+					<option value="Nuriootpa" id="location-28">Nuriootpa</option>
+					<option value="PearceRAFF" id="location-29">PearceRAFF</option>
+					<option value="Penrith" id="location-30">Penrith</option>
+					<option value="Perth" id="location-31">Perth</option>
+					<option value="PerthAirport" id="location-32">PerthAirport</option>
+					<option value="Portland" id="location-33">Portland</option>
+					<option value="Richmond" id="location-34">Richmond</option>
+					<option value="Sale" id="location-35">Sale</option>
+					<option value="SalmonGums" id="location-36">SalmonGums</option>
+					<option value="Sydney" id="location-37">Sydney</option>
+					<option value="SydneyAirport" id="location-38">SydneyAirport</option>
+					<option value="Townsville" id="location-39">Townsville</option>
+					<option value="Tuggeranong" id="location-40">Tuggeranong</option>
+					<option value="Uluru" id="location-41">Uluru</option>
+					<option value="WaggaWagga" id="location-42">WaggaWagga</option>
+					<option value="Walpole" id="location-43">Walpole</option>
+					<option value="Watsonia" id="location-44">Watsonia</option>
+					<option value="Williamtown" id="location-45">Williamtown</option>
+					<option value="Witchcliffe" id="location-46">Witchcliffe</option>
+					<option value="Wollongong" id="location-47">Wollongong</option>
+					<option value="Woomera" id="location-48">Woomera</option>
+				 </select>
+			  </div>
+			  <div class="fb-number form-group field-mintemp"><label for="mintemp" class="fb-number-label">MinTemp<span class="fb-required">*</span></label><input type="number" class="form-control" name="mintemp" min="0" max="50" id="mintemp" required="required" aria-required="true"></div>
+			  <div class="fb-number form-group field-maxtemp"><label for="maxtemp" class="fb-number-label">MaxTemp<span class="fb-required">*</span></label><input type="number" class="form-control" name="maxtemp" min="0" max="50" id="maxtemp" required="required" aria-required="true"></div>
+			  <div class="fb-number form-group field-rainfall"><label for="rainfall" class="fb-number-label">Rainfall<span class="fb-required">*</span></label><input type="number" class="form-control" name="rainfall" min="0" max="50" id="rainfall" required="required" aria-required="true"></div>
+			  <div class="fb-number form-group field-evaporation"><label for="evaporation" class="fb-number-label">Evaporation</label><input type="number" class="form-control" name="evaporation" min="0" max="10" id="evaporation"></div>
+			  <div class="fb-number form-group field-sunshine">
+				 <label for="sunshine" class="fb-number-label">Sunshine</label><input type="number" class="form-control" name="sunshine" min="0" max="30" id="sunshine">
+			  </div>
+			  <div class="fb-select form-group field-winddir">
+				 <label for="winddir" class="fb-select-label">WindGustDir</label>
+				 <select class="form-control" name="winddir" id="winddir">
+					<option disabled="null" selected="null">Select direction of wind</option>
+					<option value="N" id="winddir-1">N</option>
+					<option value="E" id="winddir-2">E</option>
+					<option value="ENE" id="winddir-3">ENE</option>
+					<option value="ESE" id="winddir-4">ESE</option>
+					<option value="NE" id="winddir-5">NE</option>
+					<option value="NNE" id="winddir-6">NNE</option>
+					<option value="NNW" id="winddir-7">NNW</option>
+					<option value="NW" id="winddir-8">NW</option>
+					<option value="S" id="winddir-9">S</option>
+					<option value="SE" id="winddir-10">SE</option>
+					<option value="SW" id="winddir-11">SW</option>
+					<option value="SSW" id="winddir-12">SSW</option>
+					<option value="SSE" id="winddir-13">SSE</option>
+					<option value="W" id="winddir-14">W</option>
+					<option value="WNW" id="winddir-15">WNW</option>
+					<option value="WSW" id="winddir-16">WSW</option>
+				 </select>
+			  </div>
+			  <div class="fb-number form-group field-windspeed">
+				 <label for="windspeed" class="fb-number-label">WindGustSpeed</label><input type="number" class="form-control" name="windspeed" min="0" max="200" id="windspeed">
+			  </div>
+			  <div class="fb-select form-group field-winddir9">
+				 <label for="winddir9" class="fb-select-label">WindDir9am</label>
+				 <select class="form-control" name="winddir9" id="winddir9">
+					<option disabled="null" selected="null">Select direction of wind at 9am</option>
+					<option value="N" id="winddir-1">N</option>
+					<option value="E" id="winddir-2">E</option>
+					<option value="ENE" id="winddir-3">ENE</option>
+					<option value="ESE" id="winddir-4">ESE</option>
+					<option value="NE" id="winddir-5">NE</option>
+					<option value="NNE" id="winddir-6">NNE</option>
+					<option value="NNW" id="winddir-7">NNW</option>
+					<option value="NW" id="winddir-8">NW</option>
+					<option value="S" id="winddir-9">S</option>
+					<option value="SE" id="winddir-10">SE</option>
+					<option value="SW" id="winddir-11">SW</option>
+					<option value="SSW" id="winddir-12">SSW</option>
+					<option value="SSE" id="winddir-13">SSE</option>
+					<option value="W" id="winddir-14">W</option>
+					<option value="WNW" id="winddir-15">WNW</option>
+					<option value="WSW" id="winddir-16">WSW</option>
+				 </select>
+			  </div>
+			  <div class="fb-select form-group field-winddir3">
+				 <label for="winddir3" class="fb-select-label">WindDir3pm</label>
+				 <select class="form-control" name="winddir3" id="winddir3">
+					<option disabled="null" selected="null">Select direction of wind at 3pm</option>
+					<option value="N" id="winddir-1">N</option>
+					<option value="E" id="winddir-2">E</option>
+					<option value="ENE" id="winddir-3">ENE</option>
+					<option value="ESE" id="winddir-4">ESE</option>
+					<option value="NE" id="winddir-5">NE</option>
+					<option value="NNE" id="winddir-6">NNE</option>
+					<option value="NNW" id="winddir-7">NNW</option>
+					<option value="NW" id="winddir-8">NW</option>
+					<option value="S" id="winddir-9">S</option>
+					<option value="SE" id="winddir-10">SE</option>
+					<option value="SW" id="winddir-11">SW</option>
+					<option value="SSW" id="winddir-12">SSW</option>
+					<option value="SSE" id="winddir-13">SSE</option>
+					<option value="W" id="winddir-14">W</option>
+					<option value="WNW" id="winddir-15">WNW</option>
+					<option value="WSW" id="winddir-16">WSW</option>
+				 </select>
+			  </div>
+			  <div class="fb-number form-group field-windspeed9">
+				 <label for="windspeed9" class="fb-number-label">WindSpeed9am</label><input type="number" class="form-control" name="windspeed9"  min="0" max="200" id="windspeed9">
+			  </div>
+			  <div class="fb-number form-group field-windspeed3">
+				 <label for="windspeed3" class="fb-number-label">WindSpeed3pm</label><input type="number" class="form-control" name="windspeed3"  min="0" max="200" id="windspeed3">
+			  </div>
+			  <div class="fb-number form-group field-humidity9">
+				 <label for="humidity9" class="fb-number-label">Humidity9am</label><input type="number" class="form-control" name="humidity9"  min="0" max="150" id="humidity9">
+			  </div>
+			  <div class="fb-number form-group field-humidity3">
+				 <label for="humidity3" class="fb-number-label">Humidity3pm</label><input type="number" class="form-control" name="humidity3"  min="0" max="150" id="humidity3">
+			  </div>
+			  
+			  <div class="fb-number form-group field-pressure9">
+				 <label for="pressure9" class="fb-number-label">Pressure9am</label><input type="number" class="form-control" name="pressure9"  min="900" max="1100" id="pressure9">
+			  </div>
+			  
+			  <div class="fb-number form-group field-pressure3">
+				 <label for="pressure3" class="fb-number-label">Pressure3pm</label><input type="number" class="form-control" name="pressure3"  min="900" max="1100" id="pressure3">
+			  </div>
+			  <div class="fb-number form-group field-cloud9">
+				 <label for="cloud9" class="fb-number-label">Cloud9am</label><input type="number" class="form-control" name="cloud9"  min="0" max="20" id="cloud9">
+			  </div>
+			  <div class="fb-number form-group field-cloud3">
+				 <label for="cloud3" class="fb-number-label">Cloud3pm</label><input type="number" class="form-control" name="cloud3"  min="0" max="20" id="cloud3">
+			  </div>
+			  <div class="fb-number form-group field-temp9">
+				 <label for="temp9" class="fb-number-label">Temperature9am<span class="fb-required">*</span></label><input type="number" class="form-control" name="temp9" min="0" max="200" id="cloud9" required="required">
+			  </div>
+			  <div class="fb-number form-group field-temp3">
+				 <label for="temp3" class="fb-number-label">Temperature3pm<span class="fb-required">*</span></label><input type="number" class="form-control" name="temp3" min="0" max="150" id="temp3" required="required">
+			  </div>
+			  <div class="fb-radio-group form-group field-raintoday">
+			  <label for="raintoday" class="fb-radio-group-label">Rain today<span class="fb-required">*</span></label>
+			  <div class="radio-group"><div class="fb-radio"><input name="raintoday" id="raintoday-0" required="required" aria-required="true" value="Yes" type="radio" checked="checked"><label for="raintoday-0">YES</label></div>
+			  <div class="fb-radio"><input name="raintoday" id="raintoday-1" required="required" aria-required="true" value="No" type="radio"><label for="raintoday-1">NO</label></div></div>
+			  </div>
+			  <div class="fb-number form-group field-riskmm"><label for="riskmm" class="fb-number-label">Risk MM<span class="fb-required">*</span></label><input type="number" class="form-control" name="riskmm"  min="0" max="30" id="riskmm" required="required" aria-required="true"></div>
+		   <div class="fb-button form-group field-submit"><button type="submit" class="btn-success btn form-control" name="submit" style="success" id="submit" >Predict Rain Tomorrow</button></div></div>
+		</form>
+		</div>
+		<div class ="result">
+			Prediction is under process.... Please Wait
+		</div>
+		<script>
+			document.querySelector('div.result').style.display="none";
+			let response = null;
+			let form = document.querySelector("form#rendered-form")
+			form.onsubmit = function(e) {
+				e.preventDefault();
+				document.querySelector('div.form-inside').style.display="none";
+				document.querySelector('div.result').style.display="block";
+				console.log(new FormData(form))
+				let formData = new FormData(form)
+				let jsonObject = {};
+
+				for (const [key, value]  of formData.entries()) {
+					jsonObject[key] = value;
+				}
+				
+				const xmlhttp = new XMLHttpRequest();
+				const url = 'http://127.0.0.1:5000/';
+				xmlhttp.open("POST", url);
+				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+				xmlhttp.send(JSON.stringify(jsonObject));
+				xmlhttp.onreadystatechange = (e) => {
+					console.log(xmlhttp.responseText)
+					response = xmlhttp.responseText;
+					showResult(response)
+				}
+				};
+			function showResult(response){
+			if(response != null)
+			{	
+				const element =document.querySelector('div.result');
+				element.innerText = "Rain Tomorrow            :            " + response;
+				element.style.display="block";
+				let input = document.createElement("input");
+				input.type = "button";
+				input.value = "Go Back To Form"
+				input.className = "btn btn-primary"; 
+				element.appendChild(input);
+				input.addEventListener("click", function(){
+				document.querySelector('div.form-inside').style.display="block";
+				element.innerText = "Prediction is under process.... Please Wait";
+				element.style.display="none";
+				input.remove();
+				});
+				
+			}
+			}
+			
+		</script>
+	</body>
+</html>
